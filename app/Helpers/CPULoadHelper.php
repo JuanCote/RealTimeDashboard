@@ -5,9 +5,12 @@ namespace App\Helpers;
 
 class CPULoadHelper
 {
-    public static function getCPULoadInfo(): array
+    public function getCPULoadInfo(): array
     {
-        $cpuLoad = sys_getloadavg()[0] . '% / 100%';
-        return ['cpuLoad' => $cpuLoad];
+        $cpuLoad = sys_getloadavg()[0];
+        return [
+            'CPULoad' => $cpuLoad,
+            'totalCPU' => 100
+        ];
     }
 }

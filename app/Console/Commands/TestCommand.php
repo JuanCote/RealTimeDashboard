@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Helpers\CPULoadHelper;
 use App\Helpers\MemoryHelper;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -29,14 +30,17 @@ class TestCommand extends Command
 
     public function __construct(
 
-        MemoryHelper $memoryHelper
+        MemoryHelper $memoryHelper,
+        CPULoadHelper $CPULoadHelper
     ) {
         parent::__construct();
         $this->memoryHelper = $memoryHelper;
+        $this->CPULoadHelper = $CPULoadHelper;
     }
 
     public function handle()
     {
-        Log::info(json_encode($this->memoryHelper->getMemoryInfo()));
+        // Log::info(json_encode($this->memoryHelper->getMemoryInfo()));
+        Log::info($this->CPULoadHelper->getCPULoadInfo());
     }
 }
