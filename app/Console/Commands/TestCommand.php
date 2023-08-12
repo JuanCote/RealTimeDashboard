@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Helpers\CPULoadHelper;
 use App\Helpers\MemoryHelper;
+use App\Jobs\TestJob;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
@@ -27,6 +28,7 @@ class TestCommand extends Command
      */
 
     private $memoryHelper;
+    private $CPULoadHelper;
 
     public function __construct(
 
@@ -40,7 +42,10 @@ class TestCommand extends Command
 
     public function handle()
     {
-        // Log::info(json_encode($this->memoryHelper->getMemoryInfo()));
-        Log::info($this->CPULoadHelper->getCPULoadInfo());
+        $loadAnalysisResults = [
+            'memoryLoad' => $this->memoryHelper->getMemoryInfo(),
+            'cpuLoad' => $this->CPULoadHelper->getCPULoadInfo()
+        ];
+        TestJob::dispatch($loadAnalysisResults);
     }
 }

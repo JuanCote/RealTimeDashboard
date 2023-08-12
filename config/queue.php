@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_CONNECTION', 'sync'),
+    'default' => env('QUEUE_CONNECTION', 'rabbitmq'),
 
     /*
     |--------------------------------------------------------------------------
@@ -33,7 +33,34 @@ return [
         'sync' => [
             'driver' => 'sync',
         ],
+        'rabbitmq' => [
+            'driver' => 'rabbitmq',
+            'connection' => PhpAmqpLib\Connection\AMQPLazyConnection::class,
 
+            'hosts' => [
+                [
+                    'host' => env('RABBITMQ_HOST', 'localhost'),
+                    'port' => env('RABBITMQ_PORT', 5672),
+                    'user' => env('RABBITMQ_USER', 'guest'),
+                    'password' => env('RABBITMQ_PASSWORD', 'guest'),
+                    'vhost' => env('RABBITMQ_VHOST', '/'),
+                ],
+            ],
+
+            'options' => [
+                'ssl_options' => [],
+            ],
+
+            'queue' => env('RABBITMQ_QUEUE', 'default'),
+            'exchange_declare' => env('RABBITMQ_EXCHANGE_DECLARE', true),
+            'queue_declare_bind' => env('RABBITMQ_QUEUE_DECLARE_BIND', true),
+            'queue_params' => [
+                'passive' => false,
+                'durable' => true,
+                'exclusive' => false,
+                'auto_delete' => false,
+            ],
+        ],
         'database' => [
             'driver' => 'database',
             'table' => 'jobs',
