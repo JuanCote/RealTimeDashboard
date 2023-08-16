@@ -46,6 +46,6 @@ class TestCommand extends Command
             'memoryLoad' => $this->memoryHelper->getMemoryInfo(),
             'cpuLoad' => $this->CPULoadHelper->getCPULoadInfo()
         ];
-        TestJob::dispatch($loadAnalysisResults);
+        // TestJob::dispatch($loadAnalysisResults);
     }
 }
