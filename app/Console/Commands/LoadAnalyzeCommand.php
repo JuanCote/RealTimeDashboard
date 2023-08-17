@@ -4,25 +4,25 @@ namespace App\Console\Commands;
 
 use App\Helpers\CPULoadHelper;
 use App\Helpers\MemoryHelper;
-use App\Jobs\TestJob;
+use App\Jobs\SendLoadDataJob;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
-class TestCommand extends Command
+class LoadAnalyzeCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'test:command';
+    protected $signature = 'loadAnalyze:command';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Test Command';
+    protected $description = 'Load analyze Command';
     /**
      * Execute the console command.
      */
@@ -46,6 +46,6 @@ class TestCommand extends Command
             'memoryLoad' => $this->memoryHelper->getMemoryInfo(),
             'cpuLoad' => $this->CPULoadHelper->getCPULoadInfo()
         ];
-        // TestJob::dispatch($loadAnalysisResults);
+        SendLoadDataJob::dispatch($loadAnalysisResults);
     }
 }
