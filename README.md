@@ -14,7 +14,6 @@ Welcome to My Awesome Project! This project is aimed at analyzing system perform
 
 Before you begin, ensure you have met the following requirements:
 
-- Node.js and npm installed.
 - Composer installed.
 - Laravel environment set up.
 - Laravel WebSockets configured.
