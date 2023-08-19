@@ -1,3 +1,33 @@
+# My Awesome Project
+
+Welcome to My Awesome Project! This project is aimed at analyzing system performance metrics like RAM, disk, CPU, and database load using Laravel and React.
+
+## Features
+
+- Real-time performance analysis using Laravel WebSockets and React.
+- Display of RAM, disk, CPU, and database load metrics.
+- WebSockets integration for instant updates.
+- Integration with Laravel Telescope for database query monitoring.
+- Easy-to-use interface to monitor and analyze system performance.
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Node.js and npm installed.
+- Composer installed.
+- Laravel environment set up.
+- Laravel WebSockets configured.
+
+## Usage
+
+1. Access the application through your web browser.
+2. Monitor real-time system performance on different sections of the dashboard.
+3. React to the data displayed on the dashboard to make informed decisions.
+
+## Contributing
+
+Contributions are always welcome! Please create a new branch and submit a pull request with your changes.
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
