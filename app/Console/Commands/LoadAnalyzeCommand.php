@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Helpers\CPULoadHelper;
+use App\Helpers\DBLoadHelper;
 use App\Helpers\MemoryHelper;
 use App\Jobs\SendLoadDataJob;
 use Illuminate\Console\Command;
@@ -29,22 +30,26 @@ class LoadAnalyzeCommand extends Command
 
     private $memoryHelper;
     private $CPULoadHelper;
+    private $DBLoadHelper;
 
     public function __construct(
 
         MemoryHelper $memoryHelper,
-        CPULoadHelper $CPULoadHelper
+        CPULoadHelper $CPULoadHelper,
+        DBLoadHelper $DBLoadHelper
     ) {
         parent::__construct();
         $this->memoryHelper = $memoryHelper;
         $this->CPULoadHelper = $CPULoadHelper;
+        $this->DBLoadHelper = $DBLoadHelper;
     }
 
     public function handle()
     {
         $loadAnalysisResults = [
             'memoryLoad' => $this->memoryHelper->getMemoryInfo(),
-            'cpuLoad' => $this->CPULoadHelper->getCPULoadInfo()
+            'cpuLoad' => $this->CPULoadHelper->getCPULoadInfo(),
+            'DBLoad' => $this->DBLoadHelper->getDBLoadInfo()
         ];
         SendLoadDataJob::dispatch($loadAnalysisResults);
     }

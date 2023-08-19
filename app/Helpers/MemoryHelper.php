@@ -24,7 +24,7 @@ class MemoryHelper
         return [
             'totalSpace' => $totalSpace,
             'freeSpace' => $freeSpace,
-            '$usedMemory' => $usedMemory
+            'usedMemory' => $usedMemory
         ];
     }
 
